@@ -1,0 +1,172 @@
+/* Default Night Mode Styling */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #222; /* Dark background */
+    color: #ddd; /* Light text */
+    transition: background-color 0.3s, color 0.3s;
+    flex-direction: column;
+}
+
+.game-container {
+    text-align: center;
+    background-color: #333; /* Dark background for the game container */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 20px;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-gap: 5px;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.cell {
+    width: 100px;
+    height: 100px;
+    background-color: #444; /* Darker cell background */
+    color: #fff; /* Light text for cell values */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 36px;
+    cursor: pointer;
+    border: 2px solid #666;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #555; /* Dark background for buttons */
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin: 10px;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #666; /* Slightly lighter background on hover */
+}
+
+/* Night Mode button */
+#toggleTheme {
+    background-color: #666;
+}
+
+/* Celebration Background */
+.celebration {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(45deg, #ff6a00, #ee0979, #ff6347, #f44236); /* Vibrant gradient */
+    background-size: 400% 400%; /* Increase background size for smoother animation */
+    animation: gradientAnimation 4s ease infinite, celebrationAnimation 3s ease-out forwards;
+    z-index: -1; /* Set z-index to -1 to ensure it stays behind the buttons */
+    display: none;
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes celebrationAnimation {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1);
+    }
+}
+
+/* Footer */
+.footer {
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    background-color: #333;
+    color: white;
+    position: relative;
+    bottom: 0;
+    margin-top: 20px;
+}
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+    .game-container {
+        max-width: 90%;
+    }
+
+    .board {
+        grid-template-columns: repeat(3, 80px);
+    }
+
+    .cell {
+        width: 80px;
+        height: 80px;
+        font-size: 28px;
+    }
+
+    button {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+}
+
+/* Light Mode (to be toggled by button) */
+body.light-mode {
+    background-color: #f4f4f4; /* Light background */
+    color: #222; /* Dark text */
+}
+
+body.light-mode .game-container {
+    background-color: #fff; /* Light background for the game container */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .cell {
+    background-color: #f4f4f4; /* Light background for cells */
+    color: #222; /* Dark text for cell values */
+}
+
+body.light-mode button {
+    background-color: #4CAF50; /* Green background for buttons */
+    color: white;
+}
+
+body.light-mode button:hover {
+    background-color: #45a049;
+}
+
+body.light-mode #toggleTheme {
+    background-color: #4CAF50;
+}
+
