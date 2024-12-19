@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     /* General Reset */
-    /* body {
+    body {
       margin: 0;
       font-family: 'Arial', sans-serif;
       display: flex;
@@ -18,22 +18,8 @@
       background-color: var(--background);
       color: var(--text-color);
       transition: background-color 0.3s, color 0.3s;
-    } */
+    }
 
-    body, html {
-        margin: 0;
-        font-family: 'Arial', sans-serif;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        background-color: var(--background);
-        color: var(--text-color);
-        transition: background-color 0.3s, color 0.3s;
-        overflow: hidden; /* Prevent scrolling */
-        height: 100%; /* Prevent scrolling by ensuring body and html have fixed height */
-      }
-      
     :root {
       --background: #fff8e1;
       /* Soft yellow */
@@ -323,7 +309,8 @@
       <span id="dark-mode-icon" class="fas fa-moon mode-toggle"></span>
     </div>
 
-    <h1>Tic-Tac-Toe</h1>
+    <h2>Welcome to</h2>
+    <h1>Tic-Tac-Toe Game...</h1>
     <input type="text" id="player1" placeholder="Enter Player 1 Name">
     <input type="text" id="player2" placeholder="Enter Player 2 Name">
     <button id="startBtn" disabled>&nbsp START &nbsp </button>
@@ -371,7 +358,7 @@
     startBtn.addEventListener("click", () => {
       const player1Name = encodeURIComponent(player1.value.trim());
       const player2Name = encodeURIComponent(player2.value.trim());
-      window.location.href = `index1.html?player1=${player1Name}&player2=${player2Name}`;
+      window.location.href = `game.html?player1=${player1Name}&player2=${player2Name}`;
     });
   </script>
 </body>

@@ -237,17 +237,21 @@
     </div>
 
     <!-- Game Container -->
-    <div class="game-container">
+    <div class="game-container" style="position: relative;">
         <h1>Tic-Tac-Toe</h1>
         <div id="status"></div>
         <div id="board" class="board"></div>
         <button onclick="resetGame()">Restart Game</button>
         <button id="toggleTheme" onclick="toggleTheme()">Light Mode</button>
-
+    
         <footer>
             <p>Developed by <a href="https://rohitrathod.netlify.app/" target="_blank">Rohit Rathod</a></p>
         </footer>
+        <br>
+        <span id="backButton" onclick="goBack()">⬅ </span>
+
     </div>
+    
 
     <!-- Celebration Background (Invisible by default) -->
     <div id="celebrationBackground"></div>

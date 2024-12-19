@@ -119,3 +119,8 @@ function toggleTheme() {
 
 // Set the default to Night Mode on page load
 document.body.classList.add('night-mode');
+
+
+function goBack() {
+    window.history.back();
+}

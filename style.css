@@ -190,3 +190,23 @@ body.light-mode button:hover {
 body.light-mode #toggleTheme {
     background-color: #4CAF50;
 }
+
+/* Back button */
+#backButton {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background-color: #ff9800;
+    color: white;
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+#backButton:hover {
+    background-color: #ff5722;
+    transform: scale(1.1);
+}
