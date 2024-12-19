@@ -10,6 +10,7 @@ body {
     align-items: center;
     height: 100vh; /* Ensure full viewport height */
     width: 100vw;  /* Ensure full viewport width */
+    position: relative; /* Needed for absolute positioning */
 }
 
 .celebration {
@@ -24,7 +25,6 @@ body {
     z-index: -1;
     display: none;
 }
-
 
 .board {
     display: grid;
@@ -302,4 +302,3 @@ body.night-mode #toggleTheme {
 body.light-mode #toggleTheme {
     color: #fff; /* Light blue text in light mode */
 }
-
