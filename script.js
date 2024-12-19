@@ -109,12 +109,26 @@ function hideCelebration() {
 }
 
 function toggleTheme() {
+    // Toggle night and light mode
     document.body.classList.toggle('night-mode');
     document.body.classList.toggle('light-mode');
+
+    // Check if it's in night mode
     const isNightMode = document.body.classList.contains('night-mode');
-    document.getElementById('toggleTheme').textContent = isNightMode
-        ? 'Light Mode'
-        : 'Night Mode';
+
+    // Update the text and icon
+    const themeText = document.getElementById('themeText');
+    const themeIcon = document.getElementById('themeIcon');
+
+    if (isNightMode) {
+        themeText.textContent = '';
+        themeIcon.classList.remove('fa-sun');
+        themeIcon.classList.add('fa-moon');
+    } else {
+        themeText.textContent = '';
+        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.add('fa-sun');
+    }
 }
 
 // Set the default to Night Mode on page load
@@ -124,3 +138,4 @@ document.body.classList.add('night-mode');
 function goBack() {
     window.history.back();
 }
+

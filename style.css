@@ -69,10 +69,6 @@ button:hover {
     /* Slightly lighter background on hover */
 }
 
-/* Night Mode button */
-#toggleTheme {
-    background-color: #666;
-}
 
 /* Celebration Background */
 .celebration {
@@ -187,15 +183,12 @@ body.light-mode button:hover {
     background-color: #45a049;
 }
 
-body.light-mode #toggleTheme {
-    background-color: #4CAF50;
-}
 
 /* Back button */
 #backButton {
     position: absolute;
     bottom: 10px;
-    left: 10px;
+    left: 80px;
     background-color: #ff9800;
     color: white;
     padding: 10px 20px;
@@ -209,4 +202,111 @@ body.light-mode #toggleTheme {
 #backButton:hover {
     background-color: #ff5722;
     transform: scale(1.1);
+}
+
+/* theme */
+.dark-mode-toggle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1px;
+    margin-left: 350px;
+}
+
+.dark-mode-toggle i {
+    font-size: 20px;
+    cursor: pointer;
+    margin: 0 10px;
+}
+
+
+/* Day night icon */
+/* Base styles for the body */
+body {
+    font-family: Arial, sans-serif;
+    transition: background-color 0.3s, color 0.3s;
+    padding: 20px;
+    margin: 0;
+}
+
+/* Dark Mode and Light Mode body styles */
+body.night-mode {
+    background-color: #222;
+    color: #fff;
+}
+
+body.light-mode {
+    background-color: #f4f4f4;
+    color: #222;
+}
+
+/* Dark Mode Toggle container */
+.dark-mode-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 10px 15px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Hover effect for the toggle */
+.dark-mode-toggle:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Styling for the toggle button */
+#toggleTheme {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    color: #fff;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+/* Styling for the icon and text */
+#toggleTheme i {
+    margin-right: 8px;
+    font-size: 20px;
+    /* Icon size */
+    transition: color 0.3s ease;
+}
+
+#toggleTheme span {
+    font-size: 16px;
+    /* Text size */
+    font-weight: bold;
+}
+
+/* Icon color transition for night and light modes */
+body.night-mode #themeIcon {
+    color: #f44336;
+    /* Yellow for sun */
+}
+
+body.light-mode #themeIcon {
+    color: #45a049;
+    /* Blue for moon */
+}
+
+/* Active hover styles for icon */
+#toggleTheme:hover i {
+    color: #fff;
+    /* Highlight icon color on hover */
+}
+
+body.night-mode #toggleTheme {
+    color: #45a049;
+    /* Bright yellow text in night mode */
+}
+
+body.light-mode #toggleTheme {
+    color: #fff;
+    /* Light blue text in light mode */
 }
