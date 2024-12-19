@@ -3,7 +3,7 @@ body {
     overflow: hidden; /* Prevent both vertical and horizontal scrolling */
     font-family: Arial, sans-serif;
     transition: background-color 0.3s, color 0.3s;
-    padding: 20px;
+    padding: 0;
     margin: 0;
     display: flex;
     justify-content: center;
@@ -13,55 +13,16 @@ body {
     position: relative; /* Needed for absolute positioning */
 }
 
-.celebration {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: linear-gradient(45deg, #ff6a00, #ee0979, #ff6347, #f44236);
-    background-size: 400% 400%;
-    animation: gradientAnimation 4s ease infinite, celebrationAnimation 3s ease-out forwards;
-    z-index: -1;
-    display: none;
-}
-
-.board {
-    display: grid;
-    grid-template-columns: repeat(3, 100px);
-    grid-gap: 5px;
-    justify-content: center;
-    margin: 20px 0;
-}
-
-.cell {
-    width: 100px;
-    height: 100px;
-    background-color: #444;
-    color: #fff;
+/* Game container styles */
+.game-container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-size: 36px;
-    cursor: pointer;
-    border: 2px solid #666;
-    font-weight: bold;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #555;
-    color: white;
-    border: none;
-    cursor: pointer;
-    margin: 10px;
-    border-radius: 5px;
-}
-
-button:hover {
-    background-color: #666;
+    width: 100%;
+    max-width: 600px;  /* Maximum width for larger screens */
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 /* Celebration Background */
@@ -124,8 +85,8 @@ button:hover {
 /* Responsive Styles */
 @media (max-width: 600px) {
     .game-container {
-        max-width: 90%;
-        margin: auto; /* Ensure it's centered on mobile */
+        width: 90%; /* Ensure the game container doesn't overflow */
+        margin: 0 auto; /* Centers the container horizontally */
     }
 
     .board {
@@ -196,13 +157,13 @@ body.light-mode button:hover {
     align-items: center;
     margin-bottom: 1px;
     margin-left: 350px;
-  }
+}
 
-  .dark-mode-toggle i {
+.dark-mode-toggle i {
     font-size: 20px;
     cursor: pointer;
     margin: 0 10px;
-  }
+}
 
 /* Day night icon */
 body.night-mode {
