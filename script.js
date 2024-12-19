@@ -22,7 +22,7 @@ function selectSymbol(symbol) {
     player1Symbol = symbol;
     player2Symbol = symbol === 'X' ? 'O' : 'X';
     currentPlayer = player1Symbol;
-    document.getElementById('status').textContent = `${player1Name} (${player1Symbol})'s turn!`;
+    document.getElementById('status').textContent = `${player1Name}'s turn`;
     modal.style.display = 'none';
     overlay.style.display = 'none';
     createBoard();
@@ -46,7 +46,7 @@ function makeMove(index) {
         currentPlayer = currentPlayer === player1Symbol ? player2Symbol : player1Symbol;
         const currentPlayerName =
             currentPlayer === player1Symbol ? player1Name : player2Name;
-        document.getElementById('status').textContent = `${currentPlayerName} (${currentPlayer})'s turn!`;
+        document.getElementById('status').textContent = `${currentPlayerName}'s turn`;
         createBoard();
         checkWinner();
     }
@@ -67,9 +67,11 @@ function checkWinner() {
     for (let pattern of winPatterns) {
         const [a, b, c] = pattern;
         if (board[a] !== '' && board[a] === board[b] && board[a] === board[c]) {
-            document.getElementById('status').textContent = `${board[a]} wins! (${board[a] === 'X' ? player1Name : player2Name})`;
+            const winner = board[a];
+            const winnerName = winner === player1Symbol ? player1Name : player2Name;
+            document.getElementById('status').textContent = `Congratulations ${winnerName}! You win!`;
             gameOver = true; // Set the game over flag to true
-            showCelebration(board[a]); // Trigger celebration
+            showCelebration(winner); // Trigger celebration
             return;
         }
     }
@@ -86,7 +88,7 @@ function resetGame() {
     currentPlayer = player1Symbol; // Reset to player 1's symbol
     gameOver = false; // Reset game over flag
     createBoard();
-    document.getElementById('status').textContent = `${player1Name} (${player1Symbol})'s turn!`;
+    document.getElementById('status').textContent = `${player1Name}'s turn`;
     hideCelebration(); // Hide celebration
 }
 
