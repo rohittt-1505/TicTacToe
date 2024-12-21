@@ -91,7 +91,7 @@ function checkWinner() {
     }
 
     // Check for a draw
-    if (!board.includes('')) {
+    if (!board.includes('') && !gameOver) {
         draws++;
         document.getElementById('draws').textContent = draws;
         document.getElementById('status').textContent = "It's a draw!";
@@ -131,14 +131,14 @@ function toggleTheme() {
     // Toggle night and light mode
     document.body.classList.toggle('night-mode');
     document.body.classList.toggle('light-mode');
-    
+
     // Check if it's in night mode
     const isNightMode = document.body.classList.contains('night-mode');
-    
+
     // Update the text and icon
     const themeText = document.getElementById('themeText');
     const themeIcon = document.getElementById('themeIcon');
-    
+
     if (isNightMode) {
         themeText.textContent = '';
         themeIcon.classList.remove('fa-sun');
