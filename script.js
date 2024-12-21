@@ -6,6 +6,11 @@ let player2Symbol = '';
 let player1Name = 'Player 1';
 let player2Name = 'Player 2';
 
+let player1Wins = 0;
+let player2Wins = 0;
+let draws = 0;
+let totalMatches = 0;  // To track the total number of matches played
+
 // Get player names from URL parameters
 const urlParams = new URLSearchParams(window.location.search);
 player1Name = decodeURIComponent(urlParams.get('player1') || 'Player 1');
@@ -71,14 +76,27 @@ function checkWinner() {
             const winnerName = winner === player1Symbol ? player1Name : player2Name;
             document.getElementById('status').textContent = `Congratulations ${winnerName}! You win!`;
             gameOver = true; // Set the game over flag to true
+            if (winner === player1Symbol) {
+                player1Wins++;
+                document.getElementById('player1Wins').textContent = player1Wins;
+            } else {
+                player2Wins++;
+                document.getElementById('player2Wins').textContent = player2Wins;
+            }
+            totalMatches++;  // Increment the total match count
+            document.getElementById('totalMatches').textContent = totalMatches;
             showCelebration(winner); // Trigger celebration
             return;
         }
     }
 
     if (!board.includes('')) {
+        draws++;
+        document.getElementById('draws').textContent = draws;
         document.getElementById('status').textContent = "It's a draw!";
         gameOver = true; // Set the game over flag to true
+        totalMatches++;  // Increment the total match count
+        document.getElementById('totalMatches').textContent = totalMatches;
         setTimeout(resetGame, 5000); // Restart the game after 5 seconds
     }
 }
@@ -139,3 +157,6 @@ function goBack() {
     window.history.back();
 }
 
+// Set player names in the scoreboard
+document.getElementById('player1NameLabel').textContent = player1Name;
+document.getElementById('player2NameLabel').textContent = player2Name;
