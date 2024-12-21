@@ -90,6 +90,7 @@ function checkWinner() {
         }
     }
 
+    // Check for a draw
     if (!board.includes('')) {
         draws++;
         document.getElementById('draws').textContent = draws;
@@ -117,7 +118,7 @@ function showCelebration(winnerSymbol) {
     // Hide the celebration background after 5 seconds (celebration duration)
     setTimeout(() => {
         celebrationElement.style.display = 'none'; // Hide after 5 seconds
-        resetGame(); // Automatically reset the game
+        setTimeout(resetGame, 5000); // Automatically reset the game after 5 seconds
     }, 5000); // 5 seconds delay
 }
 
@@ -160,7 +161,6 @@ function goBack() {
 document.getElementById('player1NameLabel').textContent = player1Name;
 document.getElementById('player2NameLabel').textContent = player2Name;
 
-
 // Reset score stat
 // Function to reset the scoreboard
 function resetScores() {
@@ -175,7 +175,24 @@ function resetScores() {
     document.getElementById('player2Wins').textContent = player2Wins;
     document.getElementById('draws').textContent = draws;
     document.getElementById('totalMatches').textContent = totalMatches;
+}
 
-    // Optionally, reset any other related elements or game states
-    resetGame(); // Call the existing resetGame function to reset the game board
+function openScoreboard() {
+    // Update the scoreboard modal with the current scores
+    document.getElementById('modalPlayer1NameLabel').textContent = player1Name;
+    document.getElementById('modalPlayer2NameLabel').textContent = player2Name;
+    document.getElementById('modalPlayer1Wins').textContent = player1Wins;
+    document.getElementById('modalPlayer2Wins').textContent = player2Wins;
+    document.getElementById('modalDraws').textContent = draws;
+    document.getElementById('modalTotalMatches').textContent = totalMatches;
+
+    // Show the modal and overlay
+    document.getElementById('scoreboardModal').style.display = 'block';
+    document.getElementById('scoreboardOverlay').style.display = 'block';
+}
+
+function closeScoreboard() {
+    // Hide the modal and overlay
+    document.getElementById('scoreboardModal').style.display = 'none';
+    document.getElementById('scoreboardOverlay').style.display = 'none';
 }
