@@ -35,16 +35,6 @@ body {
     position: relative;
 }
 
-/* Icon before the scoreboard labels */
-#scoreBoard p:before {
-    content: "\1F3C6"; /* Trophy emoji */
-    position: absolute;
-    left: 5px;
-    top: 0;
-    font-size: 1.5em;
-    color: #ffcc00; /* Gold color */
-}
-
 /* Styling the player names */
 #scoreBoard span {
     font-weight: bold;
