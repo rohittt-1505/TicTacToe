@@ -1,132 +1,120 @@
-/* General body styling */
-body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-}
-
-/* Container for the scoreboard */
-#scoreBoard {
-    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent dark background */
+/* General styling for the scoreboard modal */
+#scoreModal {
+    background-color: rgba(0, 0, 0, 0.9); /* Dark semi-transparent background */
     color: #fff; /* White text */
-    padding: 20px;
+    padding: 30px;
     border-radius: 10px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
     width: 90%;
-    max-width: 500px; /* Limit width for better readability on larger screens */
-    margin: 50px auto; /* Center the scoreboard */
+    max-width: 500px;
+    position: absolute; /* Position relative to parent container */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Adjust position to truly center */
+    z-index: 1000; /* Ensure it's above other elements */
     text-align: center;
-    position: relative; /* To position the buttons properly */
+    display: none; /* Hidden by default */
 }
 
-/* Styling the title of the scoreboard */
-#scoreBoard h2 {
+/* Scoreboard modal header styling */
+#scoreModal h2 {
     font-size: 1.8em;
     margin-bottom: 20px;
-    color: #ffcc00; /* Gold color for the title */
+    color: #ffcc00; /* Gold color for title */
 }
 
-/* Styling the individual scoreboard items */
-#scoreBoard p {
+/* Scoreboard items styling */
+#scoreModal p {
     font-size: 1.2em;
     margin: 10px 0;
-    padding-left: 30px;
-    position: relative;
 }
 
-/* Styling the player names */
-#scoreBoard span {
+#scoreModal span {
     font-weight: bold;
     color: #ffcc00;
 }
 
-/* Add a glowing effect to the winning players */
-#scoreBoard .winner {
-    color: #ff0; /* Bright yellow for the winner */
+/* Highlight for winning player */
+#scoreModal .winner {
+    color: #ff0; /* Bright yellow for winner */
     text-shadow: 0 0 10px rgba(255, 255, 0, 0.7), 0 0 20px rgba(255, 255, 0, 0.7);
 }
 
-/* Styling for buttons */
-button {
-    background-color: #ff5733;
-    color: white;
-    padding: 10px 20px;
-    font-size: 1.2em;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-    margin-top: 20px;
-}
-
-button:hover {
-    background-color: #ff2d00;
-}
-
-/* Specific styles for the 'Back to Game' and 'Cancel' buttons */
-#scoreBoard button.cancel {
-    background-color: #ccc;
-    color: #000;
-    margin-right: 20px;
-}
-
-#scoreBoard button.cancel:hover {
-    background-color: #aaa;
-}
-
-#scoreBoard button.backToGame {
-    background-color: #4CAF50; /* Green color */
-}
-
-#scoreBoard button.backToGame:hover {
-    background-color: #45a049;
-}
-
-/* Positioning the buttons horizontally next to each other */
-#scoreBoard .button-container {
+/* Button container for modal */
+#scoreModal .button-container {
     display: flex;
     justify-content: center;
     gap: 15px;
+    margin-top: 20px;
 }
 
-/* Responsive styles */
+/* Buttons inside the scoreboard modal */
+#scoreModal button {
+    background-color: #ff5733;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 1.1em;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+#scoreModal button:hover {
+    background-color: #ff2d00;
+}
+
+/* Close button at the top-right corner */
+#scoreModal .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.5em;
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    padding: 5px;
+}
+
+#scoreModal .close-btn:hover {
+    color: #ff2d00;
+}
+
+/* Responsive styling */
 @media (max-width: 768px) {
-    #scoreBoard {
-        width: 95%; /* Ensure it fits smaller screens */
-        margin: 30px auto;
+    #scoreModal {
+        width: 95%;
     }
 
-    #scoreBoard h2 {
+    #scoreModal h2 {
         font-size: 1.5em;
     }
 
-    #scoreBoard p {
+    #scoreModal p {
         font-size: 1em;
     }
 
-    button {
+    #scoreModal button {
         font-size: 1em;
         padding: 8px 16px;
     }
 }
 
-/* For very small screens (mobile portrait) */
 @media (max-width: 480px) {
-    #scoreBoard {
-        width: 95%;
-        padding: 15px;
+    #scoreModal {
+        padding: 20px;
     }
 
-    #scoreBoard h2 {
+    #scoreModal h2 {
         font-size: 1.3em;
     }
 
-    #scoreBoard p {
+    #scoreModal p {
         font-size: 0.9em;
     }
 
-    button {
+    #scoreModal button {
         font-size: 0.9em;
-        padding: 8px 15px;
+        padding: 8px 12px;
     }
 }
