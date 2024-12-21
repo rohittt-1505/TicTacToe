@@ -36,22 +36,10 @@
             <div id="status"></div>
             <div id="board" class="board"></div>
 
-            <!-- Score Display -->
-            <div id="scoreBoard">
-                <p><span id="player1NameLabel"></span> Wins: <span id="player1Wins">0</span></p>
-                <p><span id="player2NameLabel"></span> Wins: <span id="player2Wins">0</span></p>
-                <p>Draws: <span id="draws">0</span></p>
-                <p>Total Matches Played: <span id="totalMatches">0</span></p>
-                <!-- Reset Button with Icon -->
-                <button onclick="resetScores()" class="reset-btn">
-                    <i class="fas fa-sync-alt"></i>
-                </button>
-
-            </div>
-
-
             <button id="backbutton" onclick="goBack()">⬅ Back</button>
             <button onclick="resetGame()">Restart</button>
+            <button onclick="window.location.href='scoreboard.html'">View Scoreboard</button>
+
             <footer>
                 <p>Developed by <a href="https://rohitrathod.netlify.app/" target="_blank">Rohit Rathod</a></p>
             </footer>

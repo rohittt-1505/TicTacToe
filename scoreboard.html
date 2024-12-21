@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scoreboard</title>
+    <link rel="stylesheet" href="scoreboard.css"> <!-- Link to your existing CSS -->
+</head>
+<body>
+    <!-- Header with a button to go back -->
+    <header>
+        <button onclick="window.history.back()">Back to Game</button>
+    </header>
+
+    <!-- Scoreboard Modal -->
+    <div id="scoreBoardModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeScoreboardBtn">&times;</span>
+            
+            <!-- Scoreboard content -->
+            <div id="scoreBoard">
+                <h2>Scoreboard</h2>
+                <p>Player 1: <span id="player1Wins">0</span> Wins</p>
+                <p>Player 2: <span id="player2Wins">0</span> Wins</p>
+                <p>Draws: <span id="draws">0</span></p>
+                <p>Total Matches: <span id="totalMatches">0</span></p>
+                <button onclick="resetScores()">Reset Scores</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts.js"></script> <!-- Link to your existing JS -->
+</body>
+</html>

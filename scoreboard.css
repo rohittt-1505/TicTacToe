@@ -1,0 +1,142 @@
+/* General body styling */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+/* Container for the scoreboard */
+#scoreBoard {
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent dark background */
+    color: #fff; /* White text */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    width: 90%;
+    max-width: 500px; /* Limit width for better readability on larger screens */
+    margin: 50px auto; /* Center the scoreboard */
+    text-align: center;
+    position: relative; /* To position the buttons properly */
+}
+
+/* Styling the title of the scoreboard */
+#scoreBoard h2 {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    color: #ffcc00; /* Gold color for the title */
+}
+
+/* Styling the individual scoreboard items */
+#scoreBoard p {
+    font-size: 1.2em;
+    margin: 10px 0;
+    padding-left: 30px;
+    position: relative;
+}
+
+/* Icon before the scoreboard labels */
+#scoreBoard p:before {
+    content: "\1F3C6"; /* Trophy emoji */
+    position: absolute;
+    left: 5px;
+    top: 0;
+    font-size: 1.5em;
+    color: #ffcc00; /* Gold color */
+}
+
+/* Styling the player names */
+#scoreBoard span {
+    font-weight: bold;
+    color: #ffcc00;
+}
+
+/* Add a glowing effect to the winning players */
+#scoreBoard .winner {
+    color: #ff0; /* Bright yellow for the winner */
+    text-shadow: 0 0 10px rgba(255, 255, 0, 0.7), 0 0 20px rgba(255, 255, 0, 0.7);
+}
+
+/* Styling for buttons */
+button {
+    background-color: #ff5733;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #ff2d00;
+}
+
+/* Specific styles for the 'Back to Game' and 'Cancel' buttons */
+#scoreBoard button.cancel {
+    background-color: #ccc;
+    color: #000;
+    margin-right: 20px;
+}
+
+#scoreBoard button.cancel:hover {
+    background-color: #aaa;
+}
+
+#scoreBoard button.backToGame {
+    background-color: #4CAF50; /* Green color */
+}
+
+#scoreBoard button.backToGame:hover {
+    background-color: #45a049;
+}
+
+/* Positioning the buttons horizontally next to each other */
+#scoreBoard .button-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    #scoreBoard {
+        width: 95%; /* Ensure it fits smaller screens */
+        margin: 30px auto;
+    }
+
+    #scoreBoard h2 {
+        font-size: 1.5em;
+    }
+
+    #scoreBoard p {
+        font-size: 1em;
+    }
+
+    button {
+        font-size: 1em;
+        padding: 8px 16px;
+    }
+}
+
+/* For very small screens (mobile portrait) */
+@media (max-width: 480px) {
+    #scoreBoard {
+        width: 95%;
+        padding: 15px;
+    }
+
+    #scoreBoard h2 {
+        font-size: 1.3em;
+    }
+
+    #scoreBoard p {
+        font-size: 0.9em;
+    }
+
+    button {
+        font-size: 0.9em;
+        padding: 8px 15px;
+    }
+}
