@@ -74,7 +74,7 @@ function checkWinner() {
         if (board[a] !== '' && board[a] === board[b] && board[a] === board[c]) {
             const winner = board[a];
             const winnerName = winner === player1Symbol ? player1Name : player2Name;
-            document.getElementById('status').textContent = `Congratulations ${winnerName}! You win!`;
+            document.getElementById('status').textContent = `Congratulations ${winnerName} You win!`;
             gameOver = true; // Set the game over flag to true
             if (winner === player1Symbol) {
                 player1Wins++;
