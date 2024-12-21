@@ -152,7 +152,6 @@ function toggleTheme() {
 // Set the default to Night Mode on page load
 document.body.classList.add('night-mode');
 
-
 function goBack() {
     window.history.back();
 }
@@ -160,3 +159,23 @@ function goBack() {
 // Set player names in the scoreboard
 document.getElementById('player1NameLabel').textContent = player1Name;
 document.getElementById('player2NameLabel').textContent = player2Name;
+
+
+// Reset score stat
+// Function to reset the scoreboard
+function resetScores() {
+    // Reset the scores
+    player1Wins = 0;
+    player2Wins = 0;
+    draws = 0;
+    totalMatches = 0;
+
+    // Update the HTML elements with the reset values
+    document.getElementById('player1Wins').textContent = player1Wins;
+    document.getElementById('player2Wins').textContent = player2Wins;
+    document.getElementById('draws').textContent = draws;
+    document.getElementById('totalMatches').textContent = totalMatches;
+
+    // Optionally, reset any other related elements or game states
+    resetGame(); // Call the existing resetGame function to reset the game board
+}

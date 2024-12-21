@@ -279,22 +279,6 @@ body.light-mode #toggleTheme {
 }
 
 /* 21/12/24 */
-/* New styles for the score display */
-#scoreBoard {
-    margin-top: 20px;
-    font-size: 16px;
-    color: var(--primary-color);
-}
-
-#scoreBoard p {
-    margin: 5px 0;
-    font-weight: bold;
-}
-
-#scoreBoard span {
-    color: #4caf50;
-    /* Green for the score */
-}
 
 /* Modal styles */
 .modal {
@@ -543,4 +527,52 @@ footer a::before {
 .light-mode {
     background-color: white;
     color: black;
+}
+
+
+/* scoreboard */
+/* Styling the scoreboard container */
+#scoreBoard {
+    background-color: rgba(0, 0, 0, 0.7);
+    /* Semi-transparent black background */
+    color: #fff;
+    /* White text */
+    padding: 20px;
+    border-radius: 15px;
+    width: 300px;
+    margin: 20px auto;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+}
+
+/* Styling the individual scoreboard items */
+#scoreBoard p {
+    font-size: 1.2em;
+    margin: 10px 0;
+}
+
+/* Styling the player names */
+#scoreBoard span {
+    font-weight: bold;
+    color: #ffcc00;
+}
+
+/* Add a glowing effect to the winning players */
+#scoreBoard .winner {
+    color: #ff0;
+    /* Bright yellow for the winner */
+    text-shadow: 0 0 10px rgba(255, 255, 0, 0.7), 0 0 20px rgba(255, 255, 0, 0.7);
+}
+
+/* Styling the hover effect */
+#scoreBoard p:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+}
+
+/* Styling for the total matches section */
+#scoreBoard p:last-child {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #ff9900;
 }
