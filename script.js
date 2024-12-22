@@ -92,6 +92,47 @@ function resetGame() {
     renderBoard();
 }
 
+// Function to reset the scoreboard
+function resetScoreboard() {
+    // Reset player scores and draws
+    player1.wins = 0;
+    player2.wins = 0;
+    draws = 0;
+    totalMatches = 0;
+
+    // Update the UI with reset values
+    document.getElementById('modalPlayer1Wins').textContent = '0';
+    document.getElementById('modalPlayer2Wins').textContent = '0';
+    document.getElementById('modalDraws').textContent = '0';
+    document.getElementById('modalTotalMatches').textContent = '0';
+
+    // Reset the localStorage values as well
+    localStorage.setItem('player1Wins', '0');
+    localStorage.setItem('player2Wins', '0');
+    localStorage.setItem('draws', '0');
+    localStorage.setItem('totalMatches', '0');
+}
+
+// Add event listener to the reset button to call resetScoreboard on click
+document.getElementById('resetButton').addEventListener('click', function () {
+    resetScoreboard();
+    loadScoreboard(); // Re-load the scoreboard after reset
+});
+
+// Function to load scoreboard data from localStorage
+function loadScoreboard() {
+    const player1Wins = localStorage.getItem('player1Wins') || 0;
+    const player2Wins = localStorage.getItem('player2Wins') || 0;
+    const draws = localStorage.getItem('draws') || 0;
+    const totalMatches = localStorage.getItem('totalMatches') || 0;
+
+    document.getElementById('modalPlayer1Wins').textContent = player1Wins;
+    document.getElementById('modalPlayer2Wins').textContent = player2Wins;
+    document.getElementById('modalDraws').textContent = draws;
+    document.getElementById('modalTotalMatches').textContent = totalMatches;
+}
+
+// Function to open the scoreboard modal
 function openScoreboard() {
     document.getElementById("modalPlayer1NameLabel").innerText = player1.name;
     document.getElementById("modalPlayer2NameLabel").innerText = player2.name;
@@ -107,8 +148,9 @@ function closeScoreboard() {
 }
 
 function goBack() {
-    window.history.back();
+    window.history.back();  // This goes back to the previous page in browser history
 }
+
 
 // Set the default theme to dark mode when the page loads
 document.addEventListener("DOMContentLoaded", function () {
@@ -159,5 +201,7 @@ function closeModal(id) {
 
 // Initialize game
 window.onload = function () {
+    loadScoreboard(); // Load scoreboard on page load
     initializePlayers();
 };
+
