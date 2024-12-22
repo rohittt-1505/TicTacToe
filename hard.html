@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe - Hard Mode</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="hard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <!-- Game Container -->
+    <div class="game-container" style="position: relative;">
+        <div id="celebrationBackground"></div> <!-- Celebration Background Element -->
+        <div class="dark-mode-toggle">
+            <span id="toggleTheme" onclick="toggleTheme()">
+                <i id="themeIcon" class="fas fa-sun"></i>
+                <span id="themeText"></span>
+            </span>
+        </div>
+        <h1>Hard Mode</h1>
+        <div id="status"></div>
+        <div class="board" id="board">
+            <!-- Game grid (cells) will be dynamically added here -->
+        </div>
+        <button id="backbutton" onclick="goBack()"><span style='font-size:17px;'>&#8656;</span></button>
+        <button id="resetButton">Restart</button>
+        <footer>
+            <p>Developed by <a href="https://rohitrathod.netlify.app/" target="_blank">Rohit Rathod</a></p>
+        </footer>
+    </div>
+    <script src="hard.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

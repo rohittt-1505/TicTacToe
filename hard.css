@@ -1,0 +1,12 @@
+#statusMessage {
+    font-size: 20px;
+    font-weight: bold;
+    color: #ff0000;
+    margin-bottom: 20px;
+    /* Space between the message and game board */
+    text-align: center;
+}
+
+body {
+    overflow: hidden;
+}

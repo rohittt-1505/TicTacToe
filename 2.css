@@ -1,0 +1,71 @@
+/* Overlay styles */
+.overlay {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .overlay-content {
+    background: #fff;
+    padding: 20px 40px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 0.5s;
+  }
+  
+  .overlay-content h2 {
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .overlay-content button {
+    display: block;
+    width: 80%;
+    margin: 10px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #007BFF;
+    color: #fff;
+    transition: background-color 0.3s ease;
+  }
+  
+  .overlay-content button:hover {
+    background-color: #0056b3;
+  }
+  
+  .overlay-content #closeOverlay {
+    background-color: #f44336;
+  }
+  
+  .overlay-content #closeOverlay:hover {
+    background-color: #d32f2f;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .overlay-content {
+      width: 90%;
+    }
+  }
+  
+  /* Fade-in animation */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
