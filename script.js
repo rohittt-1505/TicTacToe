@@ -1,198 +1,163 @@
-let board = ['', '', '', '', '', '', '', '', ''];
-let currentPlayer = 'X';
-let gameOver = false;
-let player1Symbol = '';
-let player2Symbol = '';
-let player1Name = 'Player 1';
-let player2Name = 'Player 2';
-
-let player1Wins = 0;
-let player2Wins = 0;
+let player1 = { name: "", symbol: "", wins: 0 };
+let player2 = { name: "", symbol: "", wins: 0 };
+let currentPlayer = player1;
+let totalMatches = 0;
 let draws = 0;
-let totalMatches = 0;  // To track the total number of matches played
+let board = Array(9).fill("");
+let gameOver = false;
 
-// Get player names from URL parameters
-const urlParams = new URLSearchParams(window.location.search);
-player1Name = decodeURIComponent(urlParams.get('player1') || 'Player 1');
-player2Name = decodeURIComponent(urlParams.get('player2') || 'Player 2');
+function initializePlayers() {
+    // Fetch player names from index.html using URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    player1.name = urlParams.get("player1") || "Player 1";
+    player2.name = urlParams.get("player2") || "Player 2";
 
-// Show the modal to select symbols
-const modal = document.getElementById('symbolModal');
-const overlay = document.getElementById('overlay');
-modal.style.display = 'block';
-overlay.style.display = 'block';
-
-// Function to select symbols
-function selectSymbol(symbol) {
-    player1Symbol = symbol;
-    player2Symbol = symbol === 'X' ? 'O' : 'X';
-    currentPlayer = player1Symbol;
-    document.getElementById('status').textContent = `${player1Name}'s turn`;
-    modal.style.display = 'none';
-    overlay.style.display = 'none';
-    createBoard();
+    // Show symbol selection modal
+    openModal("symbolModal");
 }
 
-function createBoard() {
-    const boardElement = document.getElementById('board');
-    boardElement.innerHTML = ''; // Clear the board first
+function selectSymbol(symbol) {
+    player1.symbol = symbol;
+    player2.symbol = symbol === "X" ? "O" : "X";
+
+    currentPlayer = player1;
+    updateStatus();
+    closeModal("symbolModal");
+    renderBoard();
+}
+
+function updateStatus() {
+    document.getElementById("status").innerText = `${currentPlayer.name}'s turn (${currentPlayer.symbol})`;
+}
+
+function renderBoard() {
+    const boardContainer = document.getElementById("board");
+    boardContainer.innerHTML = "";
     board.forEach((cell, index) => {
-        const cellElement = document.createElement('div');
-        cellElement.classList.add('cell');
-        cellElement.textContent = cell;
-        cellElement.onclick = () => makeMove(index); // Attach click event
-        boardElement.appendChild(cellElement);
+        const cellDiv = document.createElement("div");
+        cellDiv.classList.add("cell");
+        cellDiv.innerText = cell;
+        cellDiv.onclick = () => handleCellClick(index);
+        boardContainer.appendChild(cellDiv);
     });
 }
 
-function makeMove(index) {
-    if (board[index] === '' && !gameOver) {
-        board[index] = currentPlayer;
-        currentPlayer = currentPlayer === player1Symbol ? player2Symbol : player1Symbol;
-        const currentPlayerName =
-            currentPlayer === player1Symbol ? player1Name : player2Name;
-        document.getElementById('status').textContent = `${currentPlayerName}'s turn`;
-        createBoard();
-        checkWinner();
-    }
+function handleCellClick(index) {
+    if (board[index] !== "" || gameOver) return;
+
+    board[index] = currentPlayer.symbol;
+    renderBoard();
+    checkWinner();
+    if (!gameOver) switchTurn();
+}
+
+function switchTurn() {
+    currentPlayer = currentPlayer === player1 ? player2 : player1;
+    updateStatus();
 }
 
 function checkWinner() {
-    const winPatterns = [
-        [0, 1, 2],
-        [3, 4, 5],
-        [6, 7, 8],
-        [0, 3, 6],
-        [1, 4, 7],
-        [2, 5, 8],
-        [0, 4, 8],
-        [2, 4, 6],
+    const winningCombinations = [
+        [0, 1, 2], [3, 4, 5], [6, 7, 8],
+        [0, 3, 6], [1, 4, 7], [2, 5, 8],
+        [0, 4, 8], [2, 4, 6]
     ];
 
-    for (let pattern of winPatterns) {
-        const [a, b, c] = pattern;
-        if (board[a] !== '' && board[a] === board[b] && board[a] === board[c]) {
-            const winner = board[a];
-            const winnerName = winner === player1Symbol ? player1Name : player2Name;
-            document.getElementById('status').textContent = `Congratulations ${winnerName} You win!`;
-            gameOver = true; // Set the game over flag to true
-            if (winner === player1Symbol) {
-                player1Wins++;
-                document.getElementById('player1Wins').textContent = player1Wins;
-            } else {
-                player2Wins++;
-                document.getElementById('player2Wins').textContent = player2Wins;
-            }
-            totalMatches++;  // Increment the total match count
-            document.getElementById('totalMatches').textContent = totalMatches;
-            showCelebration(winner); // Trigger celebration
+    for (const combo of winningCombinations) {
+        const [a, b, c] = combo;
+        if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+            gameOver = true;
+            currentPlayer.wins++;
+            totalMatches++;
+            document.getElementById("status").innerText = `${currentPlayer.name} wins!`;
+            setTimeout(resetGame, 5000);
             return;
         }
     }
 
-    // Check for a draw
-    if (!board.includes('') && !gameOver) {
+    if (!board.includes("")) {
+        gameOver = true;
         draws++;
-        document.getElementById('draws').textContent = draws;
-        document.getElementById('status').textContent = "It's a draw!";
-        gameOver = true; // Set the game over flag to true
-        totalMatches++;  // Increment the total match count
-        document.getElementById('totalMatches').textContent = totalMatches;
-        setTimeout(resetGame, 5000); // Restart the game after 5 seconds
+        totalMatches++;
+        document.getElementById("status").innerText = "It's a draw!";
+        setTimeout(resetGame, 5000);
     }
 }
 
 function resetGame() {
-    board = ['', '', '', '', '', '', '', '', ''];
-    currentPlayer = player1Symbol; // Reset to player 1's symbol
-    gameOver = false; // Reset game over flag
-    createBoard();
-    document.getElementById('status').textContent = `${player1Name}'s turn`;
-    hideCelebration(); // Hide celebration
+    board = Array(9).fill("");
+    gameOver = false;
+    currentPlayer = player1;
+    updateStatus();
+    renderBoard();
 }
 
-function showCelebration(winnerSymbol) {
-    const celebrationElement = document.getElementById('celebrationBackground');
-    celebrationElement.style.display = 'block'; // Show the celebration background
-
-    // Hide the celebration background after 5 seconds (celebration duration)
-    setTimeout(() => {
-        celebrationElement.style.display = 'none'; // Hide after 5 seconds
-        setTimeout(resetGame, 5000); // Automatically reset the game after 5 seconds
-    }, 5000); // 5 seconds delay
+function openScoreboard() {
+    document.getElementById("modalPlayer1NameLabel").innerText = player1.name;
+    document.getElementById("modalPlayer2NameLabel").innerText = player2.name;
+    document.getElementById("modalPlayer1Wins").innerText = player1.wins;
+    document.getElementById("modalPlayer2Wins").innerText = player2.wins;
+    document.getElementById("modalDraws").innerText = draws;
+    document.getElementById("modalTotalMatches").innerText = totalMatches;
+    openModal("scoreboardModal");
 }
 
-function hideCelebration() {
-    const celebrationElement = document.getElementById('celebrationBackground');
-    celebrationElement.style.display = 'none'; // Hide the celebration background
+function closeScoreboard() {
+    closeModal("scoreboardModal");
 }
-
-function toggleTheme() {
-    // Toggle night and light mode
-    document.body.classList.toggle('night-mode');
-    document.body.classList.toggle('light-mode');
-
-    // Check if it's in night mode
-    const isNightMode = document.body.classList.contains('night-mode');
-
-    // Update the text and icon
-    const themeText = document.getElementById('themeText');
-    const themeIcon = document.getElementById('themeIcon');
-
-    if (isNightMode) {
-        themeText.textContent = '';
-        themeIcon.classList.remove('fa-sun');
-        themeIcon.classList.add('fa-moon');
-    } else {
-        themeText.textContent = '';
-        themeIcon.classList.remove('fa-moon');
-        themeIcon.classList.add('fa-sun');
-    }
-}
-
-// Set the default to Night Mode on page load
-document.body.classList.add('night-mode');
 
 function goBack() {
     window.history.back();
 }
 
-// Set player names in the scoreboard
-document.getElementById('player1NameLabel').textContent = player1Name;
-document.getElementById('player2NameLabel').textContent = player2Name;
+// Set the default theme to dark mode when the page loads
+document.addEventListener("DOMContentLoaded", function () {
+    document.body.classList.add("night-mode"); // Start in dark mode
+    updateTheme("night"); // Update icon and text
+});
 
-// Reset score stat
-// Function to reset the scoreboard
-function resetScores() {
-    // Reset the scores
-    player1Wins = 0;
-    player2Wins = 0;
-    draws = 0;
-    totalMatches = 0;
+// Function to toggle between light and dark modes
+function toggleTheme() {
+    const body = document.body;
 
-    // Update the HTML elements with the reset values
-    document.getElementById('player1Wins').textContent = player1Wins;
-    document.getElementById('player2Wins').textContent = player2Wins;
-    document.getElementById('draws').textContent = draws;
-    document.getElementById('totalMatches').textContent = totalMatches;
+    if (body.classList.contains("night-mode")) {
+        // Switch to light mode
+        body.classList.remove("night-mode");
+        body.classList.add("light-mode");
+        updateTheme("light");
+    } else {
+        // Switch to dark mode
+        body.classList.remove("light-mode");
+        body.classList.add("night-mode");
+        updateTheme("night");
+    }
 }
 
-function openScoreboard() {
-    // Update the scoreboard modal with the current scores
-    document.getElementById('modalPlayer1NameLabel').textContent = player1Name;
-    document.getElementById('modalPlayer2NameLabel').textContent = player2Name;
-    document.getElementById('modalPlayer1Wins').textContent = player1Wins;
-    document.getElementById('modalPlayer2Wins').textContent = player2Wins;
-    document.getElementById('modalDraws').textContent = draws;
-    document.getElementById('modalTotalMatches').textContent = totalMatches;
+// Function to update the icon and text
+function updateTheme(mode) {
+    const themeIcon = document.getElementById("themeIcon");
+    const themeText = document.getElementById("themeText");
 
-    // Show the modal and overlay
-    document.getElementById('scoreboardModal').style.display = 'block';
-    document.getElementById('scoreboardOverlay').style.display = 'block';
+    if (mode === "night") {
+        themeIcon.className = "fas fa-sun"; // Set to sun icon
+        themeText.textContent = "";
+    } else {
+        themeIcon.className = "fas fa-moon"; // Set to moon icon
+        themeText.textContent = "";
+    }
 }
 
-function closeScoreboard() {
-    // Hide the modal and overlay
-    document.getElementById('scoreboardModal').style.display = 'none';
-    document.getElementById('scoreboardOverlay').style.display = 'none';
+function openModal(id) {
+    document.getElementById(id).style.display = "block";
+    document.getElementById("overlay").style.display = "block";
 }
+
+function closeModal(id) {
+    document.getElementById(id).style.display = "none";
+    document.getElementById("overlay").style.display = "none";
+}
+
+// Initialize game
+window.onload = function () {
+    initializePlayers();
+};

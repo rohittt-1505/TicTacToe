@@ -15,7 +15,7 @@ body {
     /* Ensure full viewport width */
     position: relative;
     /* Needed for absolute positioning */
-    
+
 }
 
 .celebration {
@@ -283,11 +283,16 @@ body.light-mode #toggleTheme {
 
 /* Modal styles */
 .modal {
-    position: absolute; /* Absolute positioning relative to .game-container */
-    top: 50%; /* Move it to the center vertically */
-    left: 50%; /* Move it to the center horizontally */
-    transform: translate(-50%, -50%); /* Adjust to perfectly center it */
-    z-index: 1000; /* Make sure it stays on top of other content */
+    position: absolute;
+    /* Absolute positioning relative to .game-container */
+    top: 50%;
+    /* Move it to the center vertically */
+    left: 50%;
+    /* Move it to the center horizontally */
+    transform: translate(-50%, -50%);
+    /* Adjust to perfectly center it */
+    z-index: 1000;
+    /* Make sure it stays on top of other content */
     background-color: white;
     padding: 20px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
@@ -295,7 +300,8 @@ body.light-mode #toggleTheme {
     width: 300px;
     border-radius: 8px;
     color: black;
-    display: none; /* Make sure it's hidden by default */
+    display: none;
+    /* Make sure it's hidden by default */
 }
 
 .overlay {
@@ -337,7 +343,8 @@ body.light-mode #toggleTheme {
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     background-color: var(--background);
-    position: relative; /* Make sure this is positioned relative for absolute positioning of child elements */
+    position: relative;
+    /* Make sure this is positioned relative for absolute positioning of child elements */
 }
 
 h1 {
@@ -578,4 +585,19 @@ footer a::before {
     font-size: 1.3em;
     font-weight: bold;
     color: #ff9900;
+}
+
+/*  */
+body.night-mode {
+    background-color: #222;
+    /* Dark background */
+    color: #fff;
+    /* White text */
+}
+
+body.light-mode {
+    background-color: #f4f4f4;
+    /* Light background */
+    color: #222;
+    /* Dark text */
 }

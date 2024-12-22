@@ -1,26 +1,35 @@
 /* General styling for the scoreboard modal */
 #scoreModal {
-    background-color: rgba(0, 0, 0, 0.9); /* Dark semi-transparent background */
-    color: #fff; /* White text */
+    background-color: rgba(0, 0, 0, 0.9);
+    /* Dark semi-transparent background */
+    color: #fff;
+    /* White text */
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
     width: 90%;
     max-width: 500px;
-    position: absolute; /* Position relative to parent container */
-    top: 50%; /* Center vertically */
-    left: 50%; /* Center horizontally */
-    transform: translate(-50%, -50%); /* Adjust position to truly center */
-    z-index: 1000; /* Ensure it's above other elements */
+    position: absolute;
+    /* Position relative to parent container */
+    top: 50%;
+    /* Center vertically */
+    left: 50%;
+    /* Center horizontally */
+    transform: translate(-50%, -50%);
+    /* Adjust position to truly center */
+    z-index: 1000;
+    /* Ensure it's above other elements */
     text-align: center;
-    display: none; /* Hidden by default */
+    display: none;
+    /* Hidden by default */
 }
 
 /* Scoreboard modal header styling */
 #scoreModal h2 {
     font-size: 1.8em;
     margin-bottom: 20px;
-    color: #ffcc00; /* Gold color for title */
+    color: #ffcc00;
+    /* Gold color for title */
 }
 
 /* Scoreboard items styling */
@@ -36,7 +45,8 @@
 
 /* Highlight for winning player */
 #scoreModal .winner {
-    color: #ff0; /* Bright yellow for winner */
+    color: #ff0;
+    /* Bright yellow for winner */
     text-shadow: 0 0 10px rgba(255, 255, 0, 0.7), 0 0 20px rgba(255, 255, 0, 0.7);
 }
 
