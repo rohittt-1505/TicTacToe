@@ -40,7 +40,7 @@ function handleClick(event) {
         event.target.textContent = player;
 
         if (checkWinner(player)) {
-            displayWinner('Player wins!');
+            displayWinner('You win!');
             gameOver = true;
             clearTimeout(resetTimeout); // Clear any existing timeout
             resetTimeout = setTimeout(resetGame, 5000); // Reset after 5 seconds
@@ -76,7 +76,7 @@ function aiMove(difficulty) {
     document.querySelector(`[data-index='${aiMove}']`).textContent = ai;
 
     if (checkWinner(ai)) {
-        displayWinner('AI wins!');
+        displayWinner('AI win!');
         gameOver = true;
         clearTimeout(resetTimeout); // Clear any existing timeout
         resetTimeout = setTimeout(resetGame, 5000); // Reset after 5 seconds
@@ -139,7 +139,7 @@ function resetGame() {
     });
 
     // Reset status message
-    document.getElementById('status').textContent = "Player 1's turn (X)";
+    document.getElementById('status').textContent = "Your turn (X)";
 
     // AI starts after the player moves
     if (player === 'X') {
