@@ -12,6 +12,9 @@ function initializePlayers() {
     player1.name = urlParams.get("player1") || "Player 1";
     player2.name = urlParams.get("player2") || "Player 2";
 
+    // Set the Player 1 name in the modal
+    document.getElementById("player1Name").innerText = player1.name;
+
     // Show symbol selection modal
     openModal("symbolModal");
 }
@@ -70,6 +73,10 @@ function checkWinner() {
             currentPlayer.wins++;
             totalMatches++;
             document.getElementById("status").innerText = `${currentPlayer.name} wins!`;
+
+            // Call the triggerCelebration function after a win
+            triggerCelebration(currentPlayer.name);
+
             setTimeout(resetGame, 5000);
             return;
         }
@@ -80,6 +87,7 @@ function checkWinner() {
         draws++;
         totalMatches++;
         document.getElementById("status").innerText = "It's a draw!";
+
         setTimeout(resetGame, 5000);
     }
 }
@@ -151,7 +159,6 @@ function goBack() {
     window.history.back();  // This goes back to the previous page in browser history
 }
 
-
 // Set the default theme to dark mode when the page loads
 document.addEventListener("DOMContentLoaded", function () {
     document.body.classList.add("night-mode"); // Start in dark mode
@@ -205,15 +212,25 @@ window.onload = function () {
     initializePlayers();
 };
 
-function initializePlayers() {
-    // Fetch player names from URL parameters or default to "Player 1" and "Player 2"
-    const urlParams = new URLSearchParams(window.location.search);
-    player1.name = urlParams.get("player1") || "Player 1";
-    player2.name = urlParams.get("player2") || "Player 2";
+// Celebration Added
+function triggerCelebration() {
+    document.getElementById("celebrationBackground").style.display = "block";
 
-    // Set the Player 1 name in the modal
-    document.getElementById("player1Name").innerText = player1.name;
+    const numRings = 5;
+    const colors = ['#ff6347', '#32cd32', '#1e90ff', '#ff4500'];
 
-    // Show symbol selection modal
-    openModal("symbolModal");
+    for (let i = 0; i < numRings; i++) {
+        const ring = document.createElement("div");
+        ring.classList.add("ring");
+        ring.style.borderColor = colors[Math.floor(Math.random() * colors.length)];
+        ring.style.width = `${100 + i * 50}px`;
+        ring.style.height = `${100 + i * 50}px`;
+
+        document.body.appendChild(ring);
+    }
+
+    setTimeout(() => {
+        document.getElementById("celebrationBackground").style.display = "none";
+        document.querySelectorAll(".ring").forEach(ring => ring.remove());
+    }, 3000);
 }
