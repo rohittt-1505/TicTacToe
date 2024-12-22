@@ -601,3 +601,12 @@ body.light-mode {
     color: #222;
     /* Dark text */
 }
+
+/* color X and O */
+.custom {
+    color: black;
+    /* Change to any color you like */
+    font-weight: 600;
+    font-size: 25px;
+    ;
+}

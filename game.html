@@ -16,10 +16,10 @@
     <div class="overlay" id="overlay"></div>
     <div class="modal" id="symbolModal">
         <h2>Choose Your Symbol</h2>
-        <p>Player 1, Select your symbol:</p>
-        <button onclick="selectSymbol('X')">&nbsp &nbsp X &nbsp &nbsp</button>
+        <p><span id="player1Name"></span>, Select your symbol:</p>
+        <button onclick="selectSymbol('X')"><span class="custom">&nbsp &nbsp X &nbsp &nbsp</span></button>
         OR
-        <button onclick="selectSymbol('O')">&nbsp &nbsp O &nbsp &nbsp</button>
+        <button onclick="selectSymbol('O')"><span class="custom">&nbsp &nbsp O &nbsp &nbsp</span></button>
     </div>
 
     <!-- Game Container -->
@@ -42,7 +42,7 @@
             <p><span id="modalPlayer2NameLabel"></span> Wins: <span id="modalPlayer2Wins">0</span></p>
             <p>Draws: <span id="modalDraws">0</span></p>
             <p>Total Matches Played: <span id="modalTotalMatches">0</span></p>
-            <button id="resetButton">Reset</button>
+            <button id="resetButton"><span class=reload>&#x21bb;</span> Reset</button>
             <button onclick="closeScoreboard()">Close</button>
         </div>
 

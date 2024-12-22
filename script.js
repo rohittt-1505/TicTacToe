@@ -205,3 +205,15 @@ window.onload = function () {
     initializePlayers();
 };
 
+function initializePlayers() {
+    // Fetch player names from URL parameters or default to "Player 1" and "Player 2"
+    const urlParams = new URLSearchParams(window.location.search);
+    player1.name = urlParams.get("player1") || "Player 1";
+    player2.name = urlParams.get("player2") || "Player 2";
+
+    // Set the Player 1 name in the modal
+    document.getElementById("player1Name").innerText = player1.name;
+
+    // Show symbol selection modal
+    openModal("symbolModal");
+}
