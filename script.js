@@ -30,7 +30,7 @@ function selectSymbol(symbol) {
 }
 
 function updateStatus() {
-    document.getElementById("status").innerText = `${currentPlayer.name}'s turn (${currentPlayer.symbol})`;
+    document.getElementById("status").innerText = `${currentPlayer.name} your turn (${currentPlayer.symbol})`;
 }
 
 function renderBoard() {
