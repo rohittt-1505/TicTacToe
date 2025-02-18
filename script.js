@@ -249,5 +249,5 @@ function triggerCelebration() {
     setTimeout(() => {
         document.getElementById("celebrationBackground").style.display = "none";
         document.querySelectorAll(".ring").forEach(ring => ring.remove());
-    }, 3000);
+    }, 5000);
 }
