@@ -5,6 +5,7 @@ let totalMatches = 0;
 let draws = 0;
 let board = Array(9).fill("");
 let gameOver = false;
+let lastWinner = null; // Track last winner
 
 function initializePlayers() {
     // Fetch player names from index.html using URL parameters
@@ -12,10 +13,8 @@ function initializePlayers() {
     player1.name = urlParams.get("player1") || "Player 1";
     player2.name = urlParams.get("player2") || "Player 2";
 
-    // Set the Player 1 name in the modal
     document.getElementById("player1Name").innerText = player1.name;
 
-    // Show symbol selection modal
     openModal("symbolModal");
 }
 
@@ -23,7 +22,7 @@ function selectSymbol(symbol) {
     player1.symbol = symbol;
     player2.symbol = symbol === "X" ? "O" : "X";
 
-    currentPlayer = player1;
+    currentPlayer = lastWinner || player1; // If there's a last winner, they start
     updateStatus();
     closeModal("symbolModal");
     renderBoard();
@@ -72,11 +71,10 @@ function checkWinner() {
             gameOver = true;
             currentPlayer.wins++;
             totalMatches++;
+            lastWinner = currentPlayer; // Set last winner for next game
             document.getElementById("status").innerText = `${currentPlayer.name} wins!`;
 
-            // Call the triggerCelebration function after a win
             triggerCelebration(currentPlayer.name);
-
             setTimeout(resetGame, 5000);
             return;
         }
@@ -86,6 +84,7 @@ function checkWinner() {
         gameOver = true;
         draws++;
         totalMatches++;
+        lastWinner = lastWinner; // Keep last winner if it's a draw
         document.getElementById("status").innerText = "It's a draw!";
 
         setTimeout(resetGame, 5000);
@@ -95,39 +94,33 @@ function checkWinner() {
 function resetGame() {
     board = Array(9).fill("");
     gameOver = false;
-    currentPlayer = player1;
+    currentPlayer = lastWinner || player1; // Start with last winner
     updateStatus();
     renderBoard();
 }
 
-// Function to reset the scoreboard
 function resetScoreboard() {
-    // Reset player scores and draws
     player1.wins = 0;
     player2.wins = 0;
     draws = 0;
     totalMatches = 0;
 
-    // Update the UI with reset values
     document.getElementById('modalPlayer1Wins').textContent = '0';
     document.getElementById('modalPlayer2Wins').textContent = '0';
     document.getElementById('modalDraws').textContent = '0';
     document.getElementById('modalTotalMatches').textContent = '0';
 
-    // Reset the localStorage values as well
     localStorage.setItem('player1Wins', '0');
     localStorage.setItem('player2Wins', '0');
     localStorage.setItem('draws', '0');
     localStorage.setItem('totalMatches', '0');
 }
 
-// Add event listener to the reset button to call resetScoreboard on click
 document.getElementById('resetButton').addEventListener('click', function () {
     resetScoreboard();
-    loadScoreboard(); // Re-load the scoreboard after reset
+    loadScoreboard();
 });
 
-// Function to load scoreboard data from localStorage
 function loadScoreboard() {
     const player1Wins = localStorage.getItem('player1Wins') || 0;
     const player2Wins = localStorage.getItem('player2Wins') || 0;
@@ -140,7 +133,6 @@ function loadScoreboard() {
     document.getElementById('modalTotalMatches').textContent = totalMatches;
 }
 
-// Function to open the scoreboard modal
 function openScoreboard() {
     document.getElementById("modalPlayer1NameLabel").innerText = player1.name;
     document.getElementById("modalPlayer2NameLabel").innerText = player2.name;
@@ -156,42 +148,37 @@ function closeScoreboard() {
 }
 
 function goBack() {
-    window.history.back();  // This goes back to the previous page in browser history
+    window.history.back();
 }
 
-// Set the default theme to dark mode when the page loads
 document.addEventListener("DOMContentLoaded", function () {
-    document.body.classList.add("night-mode"); // Start in dark mode
-    updateTheme("night"); // Update icon and text
+    document.body.classList.add("night-mode");
+    updateTheme("night");
 });
 
-// Function to toggle between light and dark modes
 function toggleTheme() {
     const body = document.body;
 
     if (body.classList.contains("night-mode")) {
-        // Switch to light mode
         body.classList.remove("night-mode");
         body.classList.add("light-mode");
         updateTheme("light");
     } else {
-        // Switch to dark mode
         body.classList.remove("light-mode");
         body.classList.add("night-mode");
         updateTheme("night");
     }
 }
 
-// Function to update the icon and text
 function updateTheme(mode) {
     const themeIcon = document.getElementById("themeIcon");
     const themeText = document.getElementById("themeText");
 
     if (mode === "night") {
-        themeIcon.className = "fas fa-sun"; // Set to sun icon
+        themeIcon.className = "fas fa-sun";
         themeText.textContent = "";
     } else {
-        themeIcon.className = "fas fa-moon"; // Set to moon icon
+        themeIcon.className = "fas fa-moon";
         themeText.textContent = "";
     }
 }
@@ -206,13 +193,11 @@ function closeModal(id) {
     document.getElementById("overlay").style.display = "none";
 }
 
-// Initialize game
 window.onload = function () {
-    loadScoreboard(); // Load scoreboard on page load
+    loadScoreboard();
     initializePlayers();
 };
 
-// Celebration Added
 function triggerCelebration() {
     document.getElementById("celebrationBackground").style.display = "block";
 
