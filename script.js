@@ -72,7 +72,13 @@ function checkWinner() {
             currentPlayer.wins++;
             totalMatches++;
             lastWinner = currentPlayer; // Set last winner for next game
-            document.getElementById("status").innerText = `${currentPlayer.name} wins!`;
+
+            // Update the turn status message
+            document.getElementById("status").innerText = `${currentPlayer.name} wins! (${currentPlayer.symbol})`;
+
+            // Display celebration message
+            document.getElementById("celebrationMessage").innerText = `${currentPlayer.name} wins!`;
+            document.getElementById("celebrationMessage").classList.add("show");
 
             triggerCelebration(currentPlayer.name);
             setTimeout(resetGame, 5000);
@@ -85,7 +91,13 @@ function checkWinner() {
         draws++;
         totalMatches++;
         lastWinner = lastWinner; // Keep last winner if it's a draw
+
+        // Update the turn status message for a draw
         document.getElementById("status").innerText = "It's a draw!";
+
+        // Display celebration message for a draw
+        document.getElementById("celebrationMessage").innerText = "It's a draw!";
+        document.getElementById("celebrationMessage").classList.add("show");
 
         setTimeout(resetGame, 5000);
     }
@@ -97,7 +109,27 @@ function resetGame() {
     currentPlayer = lastWinner || player1; // Start with last winner
     updateStatus();
     renderBoard();
+
+    // Hide the celebration message after game reset
+    document.getElementById("celebrationMessage").classList.remove("show");
 }
+
+function updateStatus() {
+    // Display the current player's turn
+    document.getElementById("status").innerText = `${currentPlayer.name} your turn (${currentPlayer.symbol})`;
+}
+
+function resetGame() {
+    board = Array(9).fill("");
+    gameOver = false;
+    currentPlayer = lastWinner || player1; // Start with last winner
+    updateStatus();
+    renderBoard();
+
+    // Hide the celebration message after game reset
+    document.getElementById("celebrationMessage").classList.remove("show");
+}
+
 
 function resetScoreboard() {
     player1.wins = 0;

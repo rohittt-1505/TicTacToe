@@ -506,3 +506,47 @@ button {
 
 /* Scoreboard attractive */
 /* Overall modal container */
+
+
+
+/* 18/02/25 */
+/* Celebration message style */
+#celebrationMessage {
+    font-size: 50px;
+    font-weight: bold;
+    color: #ff6347;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1s ease, visibility 1s ease;
+}
+
+/* Add animation when the message is displayed */
+#celebrationMessage.show {
+    opacity: 1;
+    visibility: visible;
+    animation: bounceEffect 4s ease forwards;
+}
+
+/* Bounce effect */
+@keyframes bounceEffect {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+    25% {
+        transform: translate(-50%, -50%) scale(1.2);
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+    75% {
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
